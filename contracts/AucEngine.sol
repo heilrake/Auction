@@ -75,8 +75,13 @@ contract AucEngine {
         return cAuction.startingPrice - discount; // actual price , change every second
     }
 
+    // function stop(unit index) {
+    //     Auction storage cAuction = auctions[index];
+    //     cAuction.stopped = true;
+    // }
+
     function buy(uint index) external payable {
-        Auction memory cAuction = auctions[index];
+        Auction storage cAuction = auctions[index];
         require(!cAuction.stopped, "stopped");
         require(block.timestamp < cAuction.endsAt, "ended!");
 
